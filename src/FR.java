@@ -8,7 +8,7 @@ class FR {
   public static void main(String[] args) {
     FR fr = new FR();
     try {
-    fr.read("/tmp/abc.txt");
+    fr.read(System.getProperty("user.dir") + "/" + "abc.txt");
     } catch (IOException e) {
       System.out.println("Blad przetwarzania pliku");
     }

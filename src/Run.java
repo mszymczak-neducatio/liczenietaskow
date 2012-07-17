@@ -6,7 +6,7 @@ public class Run {
   public static void main(String[] args) {
     System.out.println("Run");
     Run run = new Run();
-    run.process("/tmp/abc.txt");
+    run.process(System.getProperty("user.dir") + "/abc.txt");
   }
   private void process(String statsfile) {
     try {
