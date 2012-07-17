@@ -9,10 +9,9 @@ class Organizer {
   Map<String, Integer> objects = new HashMap<String, Integer>();
   public Organizer(Map lines) {
     this.lines = lines;
-  }
-  private void createEntryIfNotExists(String path) {
-    if (!alreadyCreated.contains(path)) {
-      lines.clear();
+    for (Map.Entry<String, Integer> entry : this.lines.entrySet()) {
+      System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue());
     }
+      
   }
 }
