@@ -1,6 +1,6 @@
-a/b/c.xml	5
-a/b/a.xml	0
-a/b/12124.xml	1
-a/c/12124.xml	3
-b/c/12124.xml	2
-eaf_dfasd.xml	10
+./a/b/c.xml	5
+./a/b/a.xml	0
+./a/b/12124.xml	1
+./a/c/12124.xml	3
+./b/c/12124.xml	2
+./eaf_dfasd.xml	10

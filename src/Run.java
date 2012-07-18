@@ -6,7 +6,11 @@ public class Run {
   public static void main(String[] args) {
     System.out.println("Run");
     Run run = new Run();
-    run.process(System.getProperty("user.dir") + "/abc.txt");
+    if (args.length == 1) {
+      run.process(args[0]);
+    } else {
+      run.process(System.getProperty("user.dir") + "/stats.txt");
+    }
   }
   private void process(String statsfile) {
     try {

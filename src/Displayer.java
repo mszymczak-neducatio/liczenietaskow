@@ -14,6 +14,12 @@ class Displayer {
         System.out.println("\t" + subentry);
         for(Entry subsubentry : subentry.getSubEntries()) {
           System.out.println("\t\t" + subsubentry);
+          for(Entry subsubsubentry : subsubentry.getSubEntries()) {
+            System.out.println("\t\t\t" + subsubsubentry);
+            for(Entry subsubsubsubentry : subsubsubentry.getSubEntries()) {
+              System.out.println("\t\t\t\t" + subsubsubsubentry);
+            }
+          }
         }
       }
     }
