@@ -8,4 +8,8 @@ class EntryFile extends Entry {
     }
     this.tasksNumber = new Integer(tasksNumber);
   }
+  @Override
+  public void addSubEntry(Entry entry) {
+    throw new RuntimeException("Should not be called on EntryFile");
+  }
 }

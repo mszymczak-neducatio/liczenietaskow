@@ -1,11 +1,21 @@
-abstract class Entry {
+
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+abstract class Entry implements Comparable {
   private String shortName;
   private String fullPath;
-  private Entry[] subentries;
+  private TreeSet<Entry> subentries = new TreeSet<Entry>();
   protected Integer tasksNumber = null;
   public String getShortName() { return shortName; }
   public String getFullPath() { return fullPath; }
-  public String toString() { return getShortName() + "(" + getFullPath() + " - " + countTasks() +  " tasks)"; }
+  @Override
+  public String toString() { return getShortName() + "(" + countTasks() +  " tasks)"; }
+  @Override
+  public int compareTo(Object entry) {
+    Entry entryToCompare = (Entry) entry;
+    return fullPath.compareToIgnoreCase(entryToCompare.getFullPath());
+  }
   public static Entry create(String path) {
     if (path.endsWith(".xml")) {
       return new EntryFile(path);
@@ -23,13 +33,20 @@ abstract class Entry {
     }
   }
   public int countTasks() {
-    if (this.tasksNumber == null) {
-      return 0;
+    int tasksInSubEntriesNumber = 0;
+    for (Entry subentry : getSubEntries()) {
+      tasksInSubEntriesNumber += subentry.countTasks();
     }
-    return (int) this.tasksNumber;
+    if (this.tasksNumber == null) {
+      return tasksInSubEntriesNumber;
+    }
+    return (int) this.tasksNumber + tasksInSubEntriesNumber;
   }
   public void createEntriesFromPath(String path) {
     
   }
-  public Entry[] getSubEntries() { return subentries; }
+  public TreeSet<Entry> getSubEntries() { return subentries; }
+  public void addSubEntry(Entry entry) {
+    subentries.add(entry);
+  }
 }

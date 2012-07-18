@@ -1,9 +1,7 @@
-import java.awt.Container;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.*;
 class Organizer { 
   EntryDir rootDir = new EntryDir("/");
   Map<String, Integer> lines = new HashMap<String, Integer>();
@@ -11,7 +9,10 @@ class Organizer {
   Map<String, Entry> objects = new HashMap<String, Entry>();
   public Organizer(Map<String, Integer> lines) {
     createEntries(lines);
-    System.out.println(objects);
+    fillEntries();
+  }
+  public Entry getRootDir() {
+    return rootDir;
   }
   private void createEntries(Map<String, Integer> lines) {
     String tmpPath;
@@ -35,5 +36,21 @@ class Organizer {
       }
       objects.put(subPath, entry);
     }
+  }
+  private void fillEntries() {
+    int lastSlashPosition;
+    String pathWithoutLastPart;
+    for(Map.Entry<String, Entry> entry : objects.entrySet()) {
+      lastSlashPosition = entry.getKey().lastIndexOf('/');
+      if (lastSlashPosition > 0) {
+        pathWithoutLastPart = entry.getKey().substring(0, lastSlashPosition);
+        addSubEntriesToPath(pathWithoutLastPart, entry.getValue());
+      } else {
+        rootDir.addSubEntry(entry.getValue());
+      }
+    }
+  }
+  private void addSubEntriesToPath(String path, Entry entry) {
+    objects.get(path).addSubEntry(entry);
   }
 }

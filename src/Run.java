@@ -14,5 +14,7 @@ public class Run {
     } catch (IOException e) {
       System.out.println("Blad przetwarzania pliku");
     }
+    Displayer displayer = new Displayer(organizer.getRootDir());
+    displayer.printTxtStructure();
   }
 }
